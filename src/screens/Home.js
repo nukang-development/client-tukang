@@ -1,32 +1,35 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import {Card, CardItem, Container, Body, Form, Input, Item, Label, Button, Text, View} from 'native-base'
+import { LogBox, StyleSheet } from 'react-native';
 import Orderan from '../Components/Orderan'
 import Pesan from '../Components/Pesan'
+import Chat from '../screens/Chat'
+import Profile from '../screens/Profile'
+import {Button, Text} from 'native-base'
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
 
   
   
 
 export default function Home ({navigation}) {
-
+  LogBox.ignoreLogs(['source.uri should not be an empty string'])
     const Tab = createMaterialTopTabNavigator()
 
-    function toProfile(){
-        navigation.push('Profile')
+    // function toProfile(){
+    //     navigation.push('Profile')
+    // }
+    function toChat () {
+      navigation.navigate('Chat')
     }
 
     return (
         <>
-        <View >
-            <Button onPress={toProfile} full warning>
-                <Text style={{color:'black'}} >Profile</Text>
-            </Button>
-        </View>
-        <Tab.Navigator>
-          <Tab.Screen name="Pesan" component={Pesan} />
+        <Tab.Navigator style={{marginTop: 20}}>
           <Tab.Screen name="Orderan" component={Orderan} />
+          <Tab.Screen name="Profile" component={Profile} />
+          {/* <Tab.Screen name="Pesan" component={Chat} /> */}
         </Tab.Navigator>
+        <Button  onPress={toChat} block>
+          <Text>Chat</Text></Button>
         </>
       );
 
