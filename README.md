@@ -1,3 +1,5 @@
 # client-tukang
 
-Link Expo : https://expo.io/@mozartmongi/projects/tukang-client
+`Publish expo`
+https://expo.io/@okkypratama/projects/nukang-tukang-client
+

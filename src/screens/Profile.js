@@ -1,13 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, RefreshControl, ScrollView } from 'react-native';
-import {Card, CardItem, Container, Body, View, Thumbnail, Button, Text, Content, Left, List, ListItem} from 'native-base'
+import {Card, CardItem, Container, Body, View, Thumbnail, Text, Content, Left, List, ListItem, Button} from 'native-base'
 import Porto from '../Components/Porto'
 import ProjectDesc from '../Components/Proyek'
 import {useSelector, useDispatch} from 'react-redux'
 import {getTukang} from '../store/action'
 import axios from 'axios';
-
-
 
 export default function Profile({navigation}){
     const dispatch = useDispatch()
@@ -47,7 +45,7 @@ export default function Profile({navigation}){
     useEffect(() => {
       axios({
         method: 'GET',
-        url: 'http://192.168.1.7:3000/tukang/' + idTukang,
+        url: 'http://54.255.251.4/tukang/' + idTukang,
         headers: {access_token: token}
       })
       .then(({data}) => {
@@ -86,7 +84,7 @@ export default function Profile({navigation}){
     function refetch(){
       axios({
         method: 'GET',
-        url: 'http://192.168.1.7:3000/tukang/' + idTukang,
+        url: 'http://54.255.251.4/tukang/' + idTukang,
         headers: {access_token: token}
       })
       .then(({data}) => {
@@ -107,62 +105,68 @@ export default function Profile({navigation}){
       })
       .catch(err => console.log(err))
   }
-    
-    return (
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-          <Container >
-          <Content>
-            <Card style={{flex: 0}}>
-              <CardItem>
-                <Left>
-                  {
-                    dataTukang.avatar_img ? <Thumbnail source={{uri: ava}}  large /> : <Thumbnail large source={{uri:'https://image.freepik.com/free-vector/faceless-human-model-blank-dummy-part-male-female-body-isolated-background_1441-2248.jpg'}} />
-                  }
-                  
-                  <Body>
-                    <Text style={{fontSize: 20}}>{dataTukang.name ? dataTukang.name : 'edit your name'}</Text>
-                    <Text style={{fontSize: 13}}>{dataTukang.category ? 'Tukang '+  dataTukang.category : 'pilih jenis tukang'}</Text>
-                    <Text style={{fontSize: 13}} note>{dataTukang.location ? dataTukang.location : 'isi Kota di edit'}</Text>
-                  </Body>
-                </Left>
-              </CardItem>
-            </Card>
-            <View style={{marginTop: 10}}>
-                  <Text style={{alignSelf:'center', marginBottom: 10}}>Portofolio</Text>
-              {/* {
-                dataTukang.portofolio_img ?  <Porto data={dataTukang.portofolio_img} /> :  <Porto />
-              }
-              {
-                project ? <ProjectDesc data={project} /> : <ProjectDesc />
-              } */}
-              <Porto data={dataTukang.portofolio_img} />
 
-              <List>
-                <ListItem>
-                  <Text>Proyek Kecil {project.small_project_price ? 'Rp. '+project.small_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.small_project_desc ? project.small_project_desc : 'sialhkan edit keterangan' }</Text></Text>
-                </ListItem>
-                  
-                <ListItem>
-                <Text>Proyek Sedang {project.medium_project_price ? 'Rp. '+project.medium_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.medium_project_desc ? project.medium_project_desc : 'sialhkan edit keterangan' }</Text></Text>
-                  
-                </ListItem>
-                <ListItem>
-                <Text>Proyek Besar {project.big_project_price ? 'Rp. '+project.big_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.big_project_desc ? project.big_project_desc : 'sialhkan edit keterangan' }</Text></Text>
-                  
-                </ListItem>
-              </List>
-            <Button style={{paddingBottom:20}} onPress={toEdit} block info>
-              <Text>Edit</Text>
-            </Button>
+  function toChat () {
+    navigation.navigate('Chat')
+  }
+    
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      <Container style={{backgroundColor:"#f9e0ae"}}>
+        <Content >
+          <Card style={{backgroundColor:"#f9e0ae"}}>
+            <CardItem style={{backgroundColor: "#fc8621", borderBottomRightRadius: 40, borderBottomLeftRadius: 40}}>
+              <Left>
+                {
+                  dataTukang.avatar_img ? <Thumbnail source={{uri: ava}}  large /> : <Thumbnail large source={{uri:'https://image.freepik.com/free-vector/faceless-human-model-blank-dummy-part-male-female-body-isolated-background_1441-2248.jpg'}} />
+                }
+                
+                <Body>
+                  <Text style={{fontSize: 20}}>{dataTukang.name ? dataTukang.name : 'edit your name'}</Text>
+                  <Text style={{fontSize: 13}}>{dataTukang.category ? 'Tukang '+  dataTukang.category : 'pilih jenis tukang'}</Text>
+                  <Text style={{fontSize: 13}} note>{dataTukang.location ? dataTukang.location : 'isi Kota di edit'}</Text>
+                </Body>
+              </Left>
+            </CardItem >
+          </Card>
+          <View style={{backgroundColor:"#f9e0ae", borderRadius: 20}}>
+                <Text style={{alignSelf:'center', marginBottom: 10, fontSize: 20}}>Portofolio</Text>
+            <Porto data={dataTukang.portofolio_img} />
+
+            <List>
+              <ListItem>
+                <Text>Proyek Kecil {project.small_project_price ? 'Rp. '+project.small_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.small_project_desc ? project.small_project_desc : 'sialhkan edit keterangan' }</Text></Text>
+              </ListItem>
+                
+              <ListItem>
+              <Text>Proyek Sedang {project.medium_project_price ? 'Rp. '+project.medium_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.medium_project_desc ? project.medium_project_desc : 'sialhkan edit keterangan' }</Text></Text>
+                
+              </ListItem>
+              <ListItem>
+              <Text>Proyek Besar {project.big_project_price ? 'Rp. '+project.big_project_price+' /m' : 'silahkan edit harga' }{'\n'}<Text note>{project.big_project_desc ? project.big_project_desc : 'sialhkan edit keterangan' }</Text></Text>
+                
+              </ListItem>
+            </List>
+            {/* <Button onPress={() => toDone(order._id)} small rounded success style={{marginBottom:20}}>
+                                                  <Text >Done</Text>
+                                                </Button> : <Text>{order.status}</Text> */}
+            <View style={styles.btn}>
+              <Button onPress={toEdit} small rounded info style={styles.btnEdit}>
+                <Text>Edit</Text>
+              </Button>
+              <Button onPress={toChat} small rounded info style={styles.btnChat}>
+                <Text>Chat</Text>
+              </Button>
             </View>
-          </Content>
-        </Container>
-      </ScrollView>
-    )
+          </View>
+        </Content>
+      </Container>
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -171,4 +175,29 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center'
     },
+    btn: {
+      // paddingBottom:100,
+      flex: 1,
+      flexDirection: 'row', 
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    btnEdit: {
+      marginTop: 20,
+      marginLeft: 10,
+      backgroundColor: "#74b9ff", 
+      justifyContent: "center",
+      width: 100,
+      height: 50,
+      alignItems: 'center',
+    },
+    btnChat: {
+      marginTop: 20,
+      marginLeft: 10,
+      backgroundColor: "#58B19F", 
+      justifyContent: "center",
+      width: 100,
+      height: 50,
+      alignItems: 'center',
+    }
   });

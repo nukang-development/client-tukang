@@ -18,10 +18,10 @@ export default function App() {
     <NavigationContainer  >
       <Provider store={store} >
         <Stack.Navigator >
-          <Stack.Screen name='Login'component={Login}  options={{headerTitleAlign: 'center'}}/>
+          <Stack.Screen name='Login'component={Login}  options={{headerTitleAlign: 'center', headerShown: false}}/>
           <Stack.Screen name='Home'component={Home} options={{headerTitleAlign: 'center', headerShown: false}}/>
           <Stack.Screen name='Profile'component={Profile}  options={{headerTitleAlign: 'center'}}/>
-          <Stack.Screen name='Edit'component={Edit}  options={{headerTitleAlign: 'center'}}/>
+          <Stack.Screen name='Edit'component={Edit} options={{headerTitleAlign: 'center', headerTintColor: "blue"}} />
           <Stack.Screen name='Chat'component={Chat}  options={{headerTitleAlign: 'center'}}/>
         </Stack.Navigator>
       </Provider>

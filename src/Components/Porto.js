@@ -23,7 +23,7 @@ export default function Porto (props) {
     }, [props])
 
     return (
-        <View>
+        <View style={{borderRadius: 20}}>
             <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
                 {
                     !listPorto[0] ? <Text>Loading...</Text> : 
@@ -35,15 +35,6 @@ export default function Porto (props) {
                         />
                     ))
                 }
-                {/* {
-                    listPorto.map((porto, index) => (
-                        <Image
-                            key={index}
-                            source={{uri: porto}}
-                            style={{width, height, resizeMode: 'contain'}}
-                        />
-                    ))
-                } */}
             </ScrollView>
         </View>
     )
