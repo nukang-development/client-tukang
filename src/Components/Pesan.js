@@ -2,11 +2,15 @@ import React from 'react';
 import { StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import {Card, CardItem, Container, Body, Badge, Icon, Input, Item, Label, Button, Text, View, Content} from 'native-base'
 
-export default function Pesan() {
+export default function Pesan({navigation}) {
+
+    function toChat() {
+        navigation.push('Chat')
+    }
     return (
         <ScrollView>
           <Container>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={toChat}>
                 <Card>
                     <View style={{padding: 10}}>
                         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>

@@ -6,17 +6,25 @@ import Login from './src/screens/Login'
 import Home from './src/screens/Home'
 import Profile from './src/screens/Profile'
 import Edit from './src/screens/Edit'
+import Chat from './src/screens/Chat'
+import store from './src/store'
+import {Provider}  from 'react-redux'
+
+//192.168.1.6
 
 const Stack = createStackNavigator()
 export default function App() {
   return (
-    <NavigationContainer >
-      <Stack.Navigator >
-        <Stack.Screen name='Login'component={Login}  options={{headerTitleAlign: 'center'}}/>
-        <Stack.Screen name='Home'component={Home}  options={{headerTitleAlign: 'center'}}/>
-        <Stack.Screen name='Profile'component={Profile}  options={{headerTitleAlign: 'center'}}/>
-        <Stack.Screen name='Edit'component={Edit}  options={{headerTitleAlign: 'center'}}/>
-      </Stack.Navigator>
+    <NavigationContainer  >
+      <Provider store={store} >
+        <Stack.Navigator >
+          <Stack.Screen name='Login'component={Login}  options={{headerTitleAlign: 'center'}}/>
+          <Stack.Screen name='Home'component={Home} options={{headerTitleAlign: 'center', headerShown: false}}/>
+          <Stack.Screen name='Profile'component={Profile}  options={{headerTitleAlign: 'center'}}/>
+          <Stack.Screen name='Edit'component={Edit}  options={{headerTitleAlign: 'center'}}/>
+          <Stack.Screen name='Chat'component={Chat}  options={{headerTitleAlign: 'center'}}/>
+        </Stack.Navigator>
+      </Provider>
     </NavigationContainer>
   )
     
