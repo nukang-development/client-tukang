@@ -155,7 +155,7 @@ export default function Profile({navigation}){
                   
                 </ListItem>
               </List>
-            <Button style={{paddingBottom:15}} onPress={toEdit} block info>
+            <Button style={{paddingBottom:20}} onPress={toEdit} block info>
               <Text>Edit</Text>
             </Button>
             </View>
