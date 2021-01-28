@@ -68,6 +68,8 @@ export default function Orderan({navigation, id}) {
   }
 
   function refetch(){
+    console.log(token, '<<<<< token')
+    console.log(idTukang, '<<<<< tukang')
     axios({
       method: 'GET',
       url: 'http://54.255.251.4/tukang/order/'+ idTukang,
@@ -95,6 +97,7 @@ export default function Orderan({navigation, id}) {
     })
     .catch(err => console.log(err))
   }
+  console.log(dataOrder, "<<<<<<<< dataOrder")
 
   function dropOrder(id) {
     axios({
@@ -105,6 +108,7 @@ export default function Orderan({navigation, id}) {
     .then(_=>{
       setAction(true)
       setStatus('rejected')
+      refetch()
     })
     .catch(err => console.log(err))
   }
@@ -116,7 +120,7 @@ export default function Orderan({navigation, id}) {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Container>
+      <ScrollView >
         {
           dataOrder.length > 0  &&
           dataOrder.map((data, i) => {
@@ -170,9 +174,9 @@ export default function Orderan({navigation, id}) {
                         {
                           data.status === 'rejected' &&
                             <ListItem >
-                            <CheckBox checked={false} />
+                            {/* <CheckBox checked={false} /> */}
                               
-                                <Text style={{fontSize: 20, color: 'blue'}}> Anda menolak proyek ini</Text>
+                                <Text style={{fontSize: 20, color: 'red'}}> Anda menolak proyek ini</Text>
                           </ListItem>
                         }
                         {
@@ -198,7 +202,7 @@ export default function Orderan({navigation, id}) {
               <Text style={styles.logoText}>Anda belum ada orderan</Text>
             </View>
         }
-      </Container>
+      </ScrollView>
     </ScrollView>
   );
 }
@@ -206,10 +210,11 @@ export default function Orderan({navigation, id}) {
 const styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
-    backgroundColor: '#f9e0ae',
+    // backgroundColor: 'yellow',
     width: null,
     height: null,
     alignItems: 'center',
+    marginTop: 40
   
   },
   gambar: {

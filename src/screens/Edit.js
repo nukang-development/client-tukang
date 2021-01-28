@@ -10,7 +10,6 @@ import {useSelector} from 'react-redux'
 export default function EditScreen({navigation}){
   const token = useSelector(state => state.token)
   const idTukang = useSelector(state => state.idTukang)
-
   const [image, setImage] = useState([]);
   const [nama, setNama] = useState('')
   const [category, setCategory] = useState('')
@@ -137,7 +136,8 @@ export default function EditScreen({navigation}){
           url: `http://54.255.251.4/tukang/${idTukang}/upload`,
           headers: {
               Accept: "application/json",
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+              access_token: token
           },
           data: formData
       })
@@ -177,7 +177,8 @@ export default function EditScreen({navigation}){
           url: `http://54.255.251.4/tukang/${idTukang}/avatar`,
           headers: {
               Accept: "application/json",
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+              access_token: token
           },
           data: formData
       })
@@ -185,7 +186,7 @@ export default function EditScreen({navigation}){
           setAva('')
           setIsAvaUpload(true)
       })
-      .catch(err => console.log('dwd', err))
+      .catch(err => console.log('eror upload profile>>>', err))
   }
     
 
