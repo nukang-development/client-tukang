@@ -126,8 +126,8 @@ export default function Profile({navigation}){
                 }
                 
                 <Body>
-                  <Text style={{fontSize: 20}}>{dataTukang.name ? dataTukang.name : 'edit your name'}</Text>
-                  <Text style={{fontSize: 13}}>{dataTukang.category ? 'Tukang '+  dataTukang.category : 'pilih jenis tukang'}</Text>
+                  <Text style={{fontSize: 20}}>{dataTukang.name ? dataTukang.name : 'Edit nama anda'}</Text>
+                  <Text style={{fontSize: 13}}>{dataTukang.category ? 'Tukang '+  dataTukang.category : 'Pilih jenis tukang'}</Text>
                   <Text style={{fontSize: 13}} note>{dataTukang.location ? dataTukang.location : 'isi Kota di edit'}</Text>
                 </Body>
               </Left>
@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row', 
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      paddingBottom: 40
     },
     btnEdit: {
       marginTop: 20,

@@ -63,7 +63,7 @@ export default function Login ({navigation}) {
 
   if(isReady){
     return (
-      <ScrollView>
+    <ScrollView style={{backgroundColor: "#fff"}}>
         <View style={styles.container}>
         <View style={styles.logoContainer}>
           <Image source={{uri: "https://i.imgur.com/m6fCmmW.png"}} style={styles.logo} />
@@ -94,9 +94,6 @@ export default function Login ({navigation}) {
             onChangeText={fillPassword}
           />
 
-          <TouchableOpacity style={styles.eye}>
-            <Ionicons name={"eye-outline"} size={26} color={'#FEA47F'} />
-          </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.login} onPress={masuk}>
             <Text style={styles.masuk}>Masuk</Text>

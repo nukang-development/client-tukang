@@ -199,7 +199,14 @@ export default function EditScreen({navigation}){
           <Icon name='cloud-upload' />
           <Text>Upload</Text>
         </Button>
-          {avatar.length > 0 &&
+          
+          <Button onPress={uploadAvatar} iconLeft small rounded success style={styles.btnUpload}>
+            <Icon name='save-outline'/>
+            <Text>Simpan</Text>    
+          </Button>
+        </View>
+        <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center'}}>
+        {avatar.length > 0 &&
             <View >
                 <Icon onPress={destroyAva} name="close-circle-outline" style={{ zIndex:1 ,position: 'relative', top: 45, left: 1 }} /> 
                 <Image source={{ uri: avatar }} style={{  width: 150, height: 100, marginTop: 20 }}/>
@@ -208,11 +215,8 @@ export default function EditScreen({navigation}){
           {
             isAvaUpload && <Text style={{color: 'green'}}>Upload success</Text>
           }
-          <Button onPress={uploadAvatar} iconLeft small rounded success style={styles.btnUpload}>
-            <Icon name='save-outline'/>
-            <Text>Simpan</Text>    
-          </Button>
         </View>
+        
           
           <Content style={{marginTop: 20}}>
             <Text style={styles.textProfil}>Portofolio :</Text>
@@ -221,7 +225,14 @@ export default function EditScreen({navigation}){
               <Icon name='cloud-upload' />
               <Text>Upload</Text>
             </Button>
-              {image.length > 0 &&
+              
+              <Button onPress={uploadPorto} iconLeft small rounded success style={styles.btnUpload}>
+                <Icon name='save-outline'/>  
+                <Text>Simpan</Text>
+              </Button>
+            </View>
+            <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
+            {image.length > 0 &&
                 image.map((img, index) => {
                   return (
                     <View key={index}>
@@ -234,10 +245,6 @@ export default function EditScreen({navigation}){
               {
                 isUpload && <Text style={{color: 'green'}}>Upload success</Text>
               }
-              <Button onPress={uploadPorto} iconLeft small rounded success style={styles.btnUpload}>
-                <Icon name='save-outline'/>  
-                <Text>Simpan</Text>
-              </Button>
             </View>
           </Content>
 
